@@ -25,4 +25,14 @@ public class HelloController {
     public String greet(){
         return "Greet Pipeline";
     }
+
+    @GetMapping("/welcome")
+    public String welcome(){
+        return "Fort";
+    }
+
+    @GetMapping("/hai")
+    public String hai(){
+        return "hai";
+    }
 }
