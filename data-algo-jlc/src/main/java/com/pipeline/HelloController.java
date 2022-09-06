@@ -25,4 +25,20 @@ public class HelloController {
     public String greet(){
         return "Greet Pipeline";
     }
+
+    @GetMapping("/demo")
+    public String demo(){
+        return "Hello demo";
+    }
+
+    @GetMapping("/skip")
+    public String skip(){
+        return "Fortune skip";
+    }
+
+    @GetMapping("/world")
+    public String world(){
+        return "Greet world";
+    }
+
 }
