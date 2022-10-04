@@ -8,6 +8,8 @@
         <module>bst</module>
         <module>linkedlist</module>
 		<module>binaryTree</module>
+        <module>interview-programs</module>
+		<module>stack</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
