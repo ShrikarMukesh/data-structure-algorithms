@@ -9,5 +9,6 @@ public class ReverseNumber {
             num = num / 10;
         }
         System.out.println(rev);
+
     }
 }
