@@ -2,7 +2,7 @@ package com.module2;
 
 // 25) WAP to find whether given number is armstrong or not.
 
-public class Lab25 {
+public class Lab25A {
 
 	private static int cube(int num) {
 
