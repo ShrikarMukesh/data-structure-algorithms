@@ -10,7 +10,8 @@
 		<module>binaryTree</module>
         <module>interview-programs</module>
 		<module>stack</module>
-	</modules>
+        <module>bitwise</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
