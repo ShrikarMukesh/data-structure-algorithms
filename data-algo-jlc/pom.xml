@@ -11,6 +11,7 @@
         <module>interview-programs</module>
 		<module>stack</module>
         <module>bitwise</module>
+        <module>recursion</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
