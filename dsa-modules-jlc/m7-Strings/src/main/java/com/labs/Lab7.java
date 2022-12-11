@@ -1,2 +1,4 @@
-package com.labs;public class Lab7 {
+package com.labs;
+
+public class Lab7 {
 }

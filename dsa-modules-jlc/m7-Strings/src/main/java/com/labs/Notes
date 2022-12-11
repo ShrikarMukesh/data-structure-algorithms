@@ -1,0 +1,2 @@
+1) all are using constant pool string/stringbuffer/stringbuilder/tokenizier ?
+Only String Class will be String Constant Pool

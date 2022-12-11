@@ -1,2 +1,4 @@
-package com.labs;public class Lab1 {
+package com.labs;
+
+public class Lab1 {
 }

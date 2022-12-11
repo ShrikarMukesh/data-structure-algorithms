@@ -1,6 +1,6 @@
 package com.problems;
 //print sum od diagonal elements of n*n matrix
-public class Problem3 {
+public class Problem3A {
     public static void main(String[] args) {
         int[][] mat = {{1,2,3}, {4,5,6},{7,8,9}};
         int n = mat.length;
