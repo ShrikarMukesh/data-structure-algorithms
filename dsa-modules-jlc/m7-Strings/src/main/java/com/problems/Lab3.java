@@ -1,4 +1,4 @@
-package com.labs;
+package com.problems;
 
 public class Lab3 {
     public static void main(String[] args) {
