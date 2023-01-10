@@ -1,4 +1,4 @@
-package problems;
+package com.problems;
 //Frequency of each Characters of given string with lower Alphabets
 
 /*The lowercase letter 'a' is represented by the number 97, 'b' is represented by 98, and so on.

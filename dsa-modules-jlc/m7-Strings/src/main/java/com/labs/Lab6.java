@@ -1,4 +1,4 @@
-package com.problems;
+package com.labs;
 //String Buffer is ThreadSafe
 //All the methods for String Buffer is Synchronized
 public class Lab6 {
