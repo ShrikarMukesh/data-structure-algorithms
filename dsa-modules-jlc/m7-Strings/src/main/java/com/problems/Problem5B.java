@@ -1,4 +1,4 @@
-package problems;
+package com.problems;
 
 //Check weather Given Strings are anagrams or not
 public class Problem5B {

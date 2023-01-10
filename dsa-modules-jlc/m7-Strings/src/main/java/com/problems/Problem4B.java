@@ -1,4 +1,4 @@
-package problems;
+package com.problems;
 //check weather the given string is pallindrome or Not
 public class Problem4B {
     public static void main(String[] args) {

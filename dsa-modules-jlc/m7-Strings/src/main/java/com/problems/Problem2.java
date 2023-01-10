@@ -1,4 +1,4 @@
-package problems;
+package com.problems;
 
 //Reverse a given String words
 //Leetcode problem:  151
