@@ -22,6 +22,7 @@
 		<module>m3-bit-manipulation</module>
 		<module>m4-recursion</module>
         <module>m7-Strings</module>
+        <module>m8-hashing</module>
     </modules>
     <properties>
 		<java.version>17</java.version>
