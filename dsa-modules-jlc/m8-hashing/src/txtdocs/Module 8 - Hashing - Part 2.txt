@@ -1,0 +1,176 @@
+=====================
+Module 8 - Hashing - Part 2
+=====================
+
+Load Factor
+============
+
+	Load Factor = Number of items stored in the table / Size of the table. 
+	ex:
+	Load Factor = 7/11 => 0.66
+
+=> This is the decision parameter used when we want to rehash or expand the existing hash table entries. 
+=> This also helps us in determining the efficiency of the hashing function.
+=> That means, it tells whether the hash function is distributing the keys uniformly or not.
+
+Characteristics of Good Hash Functions
+================================
+=> A good hash function should have the following characteristics:
+
+1) Should generate same value every time for the given key.
+2) Should generate the values from 0 to m-1
+3) Should generate fast - O(1) for Integers and O(len) for Strings.
+4) Should uniformly distribute Large keys into Hashtable slots.
+5) Minimize collision
+6) Have a Low load factor for a given set of keys
+
+Collisions:
+===========
+=> Hash functions are used to map each key to a different Hashtable slots, but practically it is not possible to create such a hash function and the problem is called collision. 
+
+=> Collision is the condition where two or more keys are stored in the Same Hashtable slots.
+
+Collision Handling:
+===============
+=> if you know the keys in Advance then we can do the hashing perfectly ( called Perfect Hashing).
+
+=> Collision is bound to happen if you dont know the keys in advance.
+
+=> The process of finding an Alternative Hashtable slot is called collision resolution. 
+
+=> Even though hash tables have collision problems, they are more efficient in many cases compared to all other data structures, like search trees. 
+
+=> There are a number of collision resolution techniques, and the most popular are direct chaining and open addressing.
+
+A) Direct Chaining: 
+○ Separate Chaining or Chaining
+
+B)  Open Addressing: 
+○ Linear probing 
+○ Quadratic probing
+○ Double hashing 
+
+
+Separate Chaining or Chaining
+========================
+=> When two or more Keys with same hash goes to same hashtable slot, these Keys are stored into a Separate Data Structure called a chain.
+
+Ex4: 
+
+keys = { 50, 21, 58, 17, 15, 49, 56, 22, 23, 25}
+
+hash(key) = key % 7
+
+Performance of Chaining
+--------------------------------
+
+=> Load Factor = Number of items stored in the table / Size of the table. = 10/7=1.43
+
+Data Structures for Storing Chains:
+-----------------------------------------------
+a) Linked List
+-------------------
+=> Not Cache Friendly
+=> Extra Space for Node Representation
+
+Insert 	->	O(l)
+delete	->	O(l)
+Search 	->	O(l)
+
+b) ArrayList
+-------------------
+=> Cache Friendly
+=> NO Extra Space
+
+Insert 	->	O(l)
+delete	->	O(l)
+Search 	->	O(l)
+
+c) Self Balanced BST
+---------------------------
+=> Not Cache Friendly
+=> Used from Java8
+
+Insert 	->	O(log l)
+delete	->	O(log l)
+Search 	->	O(log l)
+
+Demo using Chaining:
+------------------------------
+
+package com.jlcindia.hashing;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+class MyHashSet {
+
+	int bucket;
+	List<LinkedList<Integer>> mytable; 
+
+
+	public MyHashSet(int bucket) {
+		this.bucket = bucket;
+		this.mytable = new ArrayList<LinkedList<Integer>>(bucket);
+		
+		for(int i=0;i<bucket;i++) {
+			mytable.add(new LinkedList<Integer>());
+		}
+	}
+
+	public void insert(int key) {
+		int index = key%bucket;
+		if( !search(key))
+			mytable.get(index).add(key);		
+	}
+
+	public void delete(int key) {
+		int index = key%bucket;
+		mytable.get(index).remove((Integer)key); 
+	}
+
+	public boolean search(int key) {
+		int index = key%bucket;
+		return mytable.get(index).contains(key);
+	}
+	
+	public String toString() {
+		return mytable.toString();
+	}
+	
+}
+
+public class Lab2 {
+	public static void main(String[] args) {
+
+		MyHashSet  myset = new MyHashSet(7);
+		
+		myset.insert(50);
+		myset.insert(21);
+		myset.insert(58);
+		myset.insert(17);
+		myset.insert(15);
+		myset.insert(49);
+		myset.insert(56);
+		myset.insert(22);
+		myset.insert(23);
+		myset.insert(25);
+		myset.insert(23);
+		myset.insert(25);
+		
+		System.out.println(myset);
+		
+		myset.delete(23);
+		myset.delete(25);
+		myset.delete(50);
+		
+		System.out.println(myset);
+
+		System.out.println(myset.search(50));
+		System.out.println(myset.search(49));
+	}
+
+}
+
+

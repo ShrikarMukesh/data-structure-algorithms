@@ -1,0 +1,192 @@
+=====================
+Module 8 - Hashing - Part 1
+=====================
+
+1)  Introduction to Hashing
+=====================
+=> Hashing is a technique used to store and retrive data as quickly as possible
+=> Hashing is used to perform Optimal Searches 
+
+Ex1: 
+Consider we have an array of integer numbers.  
+I want to perform the following 3 Operations on the Array
+
+a) Search the Array for Number.	-	    O(n)
+b) Insert the number in the Array	-	O(n)
+c) Delete the number from the Array	-	O(n)
+
+
+Ex2: 
+Consider we have an Binary Search Tree(BST)
+I want to perform the following 3 Operations on BST
+
+a) Search the BST for Number.		-	O(log n)
+b) Insert the number in the BST	-	        O(log n)
+c) Delete the number from the BST	-	O(log n)
+
+
+=> Hashing works best for these 3 Operations and beats all remaining Data Structures.
+=> Hashing provides  O(1) average time complexity for 3 Important Operations - Search , Insert , Delete
+
+=> Hashing does exact key search
+=> Hashing is not useful when you want to find closet values or prefix searching etc.
+
+2) Applications of Hashing
+====================
+1) Dictionaries/Map
+2) Sets
+3) Database Indexing
+4) Symbol Tables in Compilers
+5) Cryptography
+6) Password Verification (MD5,SHA256)
+7) Robin-Karp Algorithm
+etc
+
+3) Direct Address Table:
+====================
+=> Consider we have 25 keys with the values ranging from 0 to 24. 
+How can we implement the following 3 operations in O(1) time complexity?
+
+a) Search
+b) Insert
+c) Delete
+
+Solution with Direct Address Table Technique:
+-------------------------------------------------------------
+Lab 1:
+=====
+package com.jlcindia.hashing;
+
+class MyTable {
+	int mytable[];
+	int capacity;
+
+	public MyTable(int capacity) {
+		this.capacity = capacity;
+		mytable = new int[capacity];
+	}
+
+	public void insert(int key) {
+		mytable[key]++;
+	}
+
+	public void delete(int key) {
+		mytable[key]--;
+	}
+
+	public int search(int key) {
+		return mytable[key];
+	}
+	
+	public void show() {
+		for(int i=0;i<capacity;i++) {
+			if(mytable[i]!=0) {
+				System.out.println(i);
+			}
+		}
+	}
+}
+
+public class Lab1 {
+	public static void main(String[] args) {
+
+		MyTable mytable = new MyTable(25);
+		mytable.insert(5);
+		mytable.insert(2);
+		mytable.insert(7);
+		mytable.insert(9);
+		mytable.insert(0);
+		
+		mytable.show();
+		
+		mytable.delete(0);
+		mytable.delete(2);
+		
+		System.out.println("After Delete--");
+		mytable.show();
+		System.out.println("----------");
+
+		System.out.println(mytable.search(5));
+		System.out.println(mytable.search(2));
+	}
+
+}
+
+
+
+Problems with above solution:
+----------------------------------------
+=> It does not handle the following
+a) Large Numbers
+b) Negative Numbers
+c) Floating Point numbers
+d) Strings
+e) Addresses (Any Object Address)
+
+*** We can use Hashing to solve the above problems
+
+About Hashing:
+---------------------
+=> Hashing is a technique used to store and retrive keys as quickly as possible.
+
+=> Keys can be any of the following
+a) Large Numbers
+b) Negative Numbers
+c) Floating Point numbers
+d) Strings
+e) Addresses (Any Object Address)
+
+=> You can have Universe of Keys - 
+=> You can store the keys in Hashtable by converting the keys to small values.
+
+Hash Function:
+===========
+=> Hash function is used to transform the key into the index. 
+
+=> Ideally, the hash function should map each possible key to a unique slot index, but it is difficult to achieve in practice.
+
+=> Given a collection of elements, a hash function that maps each item into a unique slot is referred to as a perfect hash function
+
+Ex 2: 
+keys = { 53,51,55,52,50,54,49}
+
+hash(key) = key %7
+
+
+Ex 3: 
+keys = { 53,51,55,52,50,54,49}
+
+hash(key) = key %11
+
+
+Hash Function Examples
+--------------------------------------
+1) for numbers
+----------------------
+=> hash(key) = key % m  
+
+where m is table size ( consider prime number)
+
+2) for Strings
+------------------
+str = "abc"
+
+=>  hash(key) = ( str[0] * x^0 + str[1] * x^1 + str[2] * x^2+ ...) % m
+
+3) Universal Hashing:
+---------------------------
+=> Group of Hash Functions and Pick one Randomly.
+
+Load Factor
+============
+
+	Load Factor = Number of items stored in the table / Size of the table. 
+
+=> This is the decision parameter used when we want to rehash or expand the existing hash table entries. 
+=> This also helps us in determining the efficiency of the hashing function.
+=> That means, it tells whether the hash function is distributing the keys uniformly or not.
+
+
+
+
+
