@@ -1,0 +1,494 @@
+=====================
+Module 8 - Hashing - Part 3
+=====================
+ Open Addressing: 
+------------------------
+=> In open addressing, all keys are stored in the hash table itself. 
+=> This approach is also known as closed hashing. 
+=> This procedure is based on probing. 
+=> Collision is resolved by probing.
+
+Open Addressing can be implemented in 3 ways
+
+1) Linear probing 
+2) Quadratic probing
+3) Double hashing ***
+
+1) Linear Probing:
+--------------------------
+=> Interval between probes is fixed at 1. 
+=> In linear probing, we search the hash table sequentially, starting from the original hash location.
+=>  If a location is occupied, we check the next location. 
+=> We wrap around from the last table location to the first table location if necessary. 
+
+
+Ex:
+
+keys ={50, 51, 49, 16, 56, 15, 19}
+hash(key) = key % 7
+
+
+=> Problem with linear probing is that table items forms cluster together in the hash table. 
+=> This means that the table contains groups of consecutively occupied locations that are called clustering.
+=> Clustering causes long probe searches and therefore decreases the overall efficiency.
+
+2) Quadratic Probing:
+------------------------------
+=> Interval between probes increases proportionally to the hash value 
+=> Problem of Clustering can be reduced if we use the quadratic probing method.
+=> In quadratic probing, we start from the original hash location . 
+If a location is occupied, we check the locations i + 1^2 , i +2^2, i + 3^2, i + 4^2...
+
+keys ={31, 19, 2, 13, 25, 24, 21, 9}
+hash(key) = key % 11
+
+
+=> Even though clustering is avoided by quadratic probing, still there are chances of thin clustering.
+
+
+3) Double hashing: 
+--------------------------
+=> Interval between probes is computed by another hash function. 
+=> Double hashing reduces clustering in a better way. 
+=> Increments for the probing sequence are computed by using a second hash function.
+=> In Double hashing, We first probe the location h1(key). 
+If the location is occupied, we probe the location ( h1(key) + i *  h2(key) ) % m
+
+For Example, as follows
+
+( h1(key) + 1*  h2(key) ) % m
+( h1(key) + 2 * h2(key) ) % m
+( h1(key) + 3 * h2(key) ) % m
+etc
+
+Ex:
+
+keys = {49, 63, 56, 52, 54, 48}
+
+m = 7 ( 0 to 6)
+h1(key) = key % 7
+h2(key) = 6- (key % 6)
+
+====================
+Lab3.java
+====================
+
+package com.jlcindia.hashing1;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+//Implement HashSet using Chaining
+// To Store Integers
+// Updated 
+class MyHashSet {
+
+	private int bucketSize; 
+	private int currentSize;
+	List<LinkedList<Integer>> mytable; 
+
+	public MyHashSet(int bucketSize) {
+		this.bucketSize = bucketSize;
+		this.mytable = new ArrayList<LinkedList<Integer>>(bucketSize);
+		
+		for(int i=0;i<bucketSize;i++) {
+			mytable.add(new LinkedList<Integer>());
+		}
+	}
+
+	public int size() {
+		return this.currentSize;
+	}
+	
+	public boolean isEmpty() {
+		return currentSize==0;
+	}
+	
+	public void clear() {
+		
+		this.mytable.clear();
+		
+		for(int i=0;i<bucketSize;i++) {
+			mytable.add(new LinkedList<Integer>());
+		}
+		this.currentSize=0;
+	}
+	
+	public void insert(Integer key) {
+		int index = myhash(key);
+		if( !search(key)) {
+			mytable.get(index).add(key);
+			currentSize++;
+		}
+	}
+
+	public void delete(Integer key) {
+		int index = myhash(key);
+		mytable.get(index).remove((Integer)key); 
+		currentSize--;
+	}
+
+	public boolean search(Integer key) {
+		int index = myhash(key);
+		return mytable.get(index).contains(key);
+	}
+	
+	public int myhash(Integer key) {
+		int hash = key.hashCode() % this.bucketSize;
+		return hash;
+	}
+	
+	public String toString() {
+		return mytable.toString();
+	}
+	
+}
+
+public class Lab3 {
+	public static void main(String[] args) {
+
+		MyHashSet  myset = new MyHashSet(7);
+		
+		System.out.println("------1-------");
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+		
+		myset.insert(50);
+		myset.insert(21);
+		myset.insert(58);
+		myset.insert(17);
+		myset.insert(15);
+		myset.insert(49);
+		myset.insert(56);
+		myset.insert(22);
+		myset.insert(23);
+		myset.insert(25);
+		myset.insert(23);
+		myset.insert(25);
+		
+		System.out.println("------2-------");
+
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+		
+		myset.delete(23);
+		myset.delete(25);
+		myset.delete(50);
+		
+		System.out.println("------3-------");
+
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+		
+		System.out.println("------4-------");
+		System.out.println(myset.search(50));
+		System.out.println(myset.search(49));
+		
+		System.out.println("------5-------");
+		myset.clear();
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+	}
+
+}
+
+====================
+Lab4.java
+====================
+package com.jlcindia.hashing2;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+//Implement HashSet using Chaining
+//To Store Strings
+
+class MyHashSet {
+
+	private int bucketSize; 
+	private int currentSize;
+	List<LinkedList<String>> mytable; 
+
+	public MyHashSet(int bucketSize) {
+		this.bucketSize = bucketSize;
+		this.mytable = new ArrayList<LinkedList<String>>(bucketSize);
+		
+		for(int i=0;i<bucketSize;i++) {
+			mytable.add(new LinkedList<String>());
+		}
+	}
+
+	public int size() {
+		return this.currentSize;
+	}
+	
+	public boolean isEmpty() {
+		return currentSize==0;
+	}
+	
+	public void clear() {
+		
+		this.mytable.clear();
+		
+		for(int i=0;i<bucketSize;i++) {
+			mytable.add(new LinkedList<String>());
+		}
+		this.currentSize=0;
+	}
+	
+	public void insert(String key) {
+		int index = myhash(key);
+		if( !search(key)) {
+			mytable.get(index).add(key);
+			currentSize++;
+		}
+	}
+
+	public void delete(String key) {
+		int index = myhash(key);
+		mytable.get(index).remove(key); 
+		currentSize--;
+	}
+
+	public boolean search(String key) {
+		int index = myhash(key);
+		return mytable.get(index).contains(key);
+	}
+	
+	public int myhash(String key) {
+		int hash = key.hashCode() % this.bucketSize;
+		return hash;
+	}
+	
+	public String toString() {
+		return mytable.toString();
+	}
+	
+}
+
+public class Lab4 {
+	public static void main(String[] args) {
+
+		MyHashSet  myset = new MyHashSet(7);
+		
+		System.out.println("------1-------");
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+		
+		myset.insert("aa");
+		myset.insert("bb");
+		myset.insert("cc");
+		myset.insert("dd");
+		myset.insert("ee");
+		
+		myset.insert("ab");
+		myset.insert("bc");
+		myset.insert("cd");
+		myset.insert("de");
+		myset.insert("ef");
+		
+		
+		System.out.println("------2-------");
+
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+		
+		myset.delete("ab");
+		myset.delete("de");
+		myset.delete("dd");
+		
+		System.out.println("------3-------");
+
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+		
+		System.out.println("------4-------");
+		System.out.println(myset.search("aa"));
+		System.out.println(myset.search("dd"));
+		
+		System.out.println("------5-------");
+		myset.clear();
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+	}
+
+}
+
+==============
+Lab5.java
+==============
+
+package com.jlcindia.hashing3;
+
+//Implement HashSet using Double Hashing
+
+class MyHashSet {
+
+	private int bucketSize;
+	private int currentSize;
+	private Integer[] mytable;
+
+	public MyHashSet(int bucketSize) {
+		this.bucketSize = bucketSize;
+		this.mytable = new Integer[bucketSize];
+		this.currentSize = 0;
+	}
+
+	public int size() {
+		return this.currentSize;
+	}
+
+	public boolean isEmpty() {
+		return currentSize == 0;
+	}
+
+	public void clear() {
+
+		this.currentSize = 0;
+		for (int i = 0; i < bucketSize; i++) {
+			mytable[i] = null;
+		}
+
+	}
+
+	public void add(Integer key) {
+		int index = myhash1(key);
+		if (mytable[index] != null) {
+			index = myhash(key);
+		}
+
+		mytable[index] = key;
+		this.currentSize++;
+
+	}
+
+	public void remove(Integer key) {
+		
+		int index = myhash1(key);
+		if (mytable[index] != key) {
+			index = myhash99(key);
+		}
+		
+		if (mytable[index] == key) {
+			mytable[index] = null;
+			this.currentSize--;
+		}
+
+	}
+
+	public boolean contains(Integer key) {
+		int index = myhash1(key);
+		if (mytable[index] != key) {
+			index = myhash99(key);
+		}
+
+		return mytable[index] == key;
+	}
+
+	public int myhash1(Integer key) {
+		int hash1 = key.hashCode() % this.bucketSize;
+		return hash1;
+	}
+
+	public int myhash2(Integer key) {
+		int hash2 = (this.bucketSize - 1) - key.hashCode() % (this.bucketSize - 1);
+		return hash2;
+	}
+
+	public int myhash(Integer key) {
+		int hash1 = myhash1(key);
+		int hash2 = myhash2(key);
+
+		int myhash = 0;
+		for (int i = 1; i <= this.bucketSize; i++) {
+			myhash = (hash1 + i * hash2) % this.bucketSize;
+			if (mytable[myhash] == null) {
+				return myhash;
+			}
+		}
+		return myhash;
+	}
+
+	public int myhash99(Integer key) {
+		int hash1 = myhash1(key);
+		int hash2 = myhash2(key);
+
+		int myhash = 0;
+		for (int i = 1; i <= this.bucketSize; i++) {
+			myhash = (hash1 + i * hash2) % this.bucketSize;
+			if (mytable[myhash] == key) {
+				return myhash;
+			}
+		}
+		return myhash;
+	}
+
+	public String toString() {
+		String str = "[";
+		for (int i = 0; i < this.bucketSize; i++) {
+			if (mytable[i] != null) {
+				str += mytable[i] + "\t";
+			}
+		}
+		str = str + "]";
+		return str;
+	}
+
+}
+
+public class Lab5 {
+	public static void main(String[] args) {
+				
+		MyHashSet myset = new MyHashSet(7);
+
+		System.out.println("------1-------");
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+
+		myset.add(49);
+		myset.add(63);
+		myset.add(56);
+		myset.add(52);
+		myset.add(54);
+		myset.add(48);
+
+		System.out.println("------2-------");
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+
+		myset.remove(49);
+		myset.remove(48);
+		myset.remove(99);
+
+		System.out.println("------3-------");
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+
+		System.out.println("------4-------");
+		System.out.println(myset.contains(49));
+		System.out.println(myset.contains(52));
+
+		myset.clear();
+		System.out.println("------5-------");
+		System.out.println(myset.size());
+		System.out.println(myset.isEmpty());
+		System.out.println(myset);
+
+	}
+
+}
+
+
