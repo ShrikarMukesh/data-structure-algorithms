@@ -21,7 +21,7 @@ Consider we have an Binary Search Tree(BST)
 I want to perform the following 3 Operations on BST
 
 a) Search the BST for Number.		-	O(log n)
-b) Insert the number in the BST	-	        O(log n)
+b) Insert the number in the BST	    -	O(log n)
 c) Delete the number from the BST	-	O(log n)
 
 
