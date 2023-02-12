@@ -1,4 +1,4 @@
-package com.hashing1.dsa.labs;
+package com.ll.dsa.labs;
 
 public class Lab3 {
     static int length(Node headNode){

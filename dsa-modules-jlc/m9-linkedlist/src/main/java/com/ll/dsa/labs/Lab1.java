@@ -1,4 +1,4 @@
-package com.hashing1.dsa.labs;
+package com.ll.dsa.labs;
 //Traverse the LinkedList using Recursive Style
 public class Lab1 {
     static void displayList(Node headNode){

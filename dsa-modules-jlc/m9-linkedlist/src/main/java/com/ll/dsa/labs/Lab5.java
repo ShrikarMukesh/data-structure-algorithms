@@ -1,4 +1,4 @@
-package com.hashing1.dsa.labs;
+package com.ll.dsa.labs;
 
 public class Lab5 {
     static Node inserLast(Node headNode, int data){

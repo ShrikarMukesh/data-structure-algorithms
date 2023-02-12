@@ -1,4 +1,4 @@
-package com.hashing1.dsa.labs;
+package com.ll.dsa.labs;
 
 public class Lab2 {
     static void displayList(Node currentNode){
