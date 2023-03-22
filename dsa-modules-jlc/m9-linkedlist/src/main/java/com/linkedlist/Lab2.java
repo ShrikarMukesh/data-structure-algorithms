@@ -1,11 +1,12 @@
-package com.ll.dsa.labs;
+package com.linkedlist;
 
+//Traverse the LinkedList using Recursive Style
 public class Lab2 {
     static void displayList(Node currentNode){
         if(currentNode == null){
             return;
         }
-        System.out.println(currentNode.data);
+        System.out.print(currentNode.data + "\t");
         displayList(currentNode.next);
     }
     public static void main(String[] args) {

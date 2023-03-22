@@ -1,4 +1,4 @@
-package com.ll.dsa.labs;
+package com.linkedlist;
 
 class Node{
     int data;
