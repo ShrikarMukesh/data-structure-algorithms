@@ -3,6 +3,8 @@ package com.linkedlist;
 //delete at the beginning of LinkedList
 public class Lab7 {
 
+
+
     static Node deleteFirst(Node headNode){
         if(headNode == null){
             return null;
@@ -29,6 +31,26 @@ public class Lab7 {
         displayList(currentNode.next);
 
     }
+
+    public static Node reverse(Node head) {
+
+        //Set prev node with null and current with head
+        Node prev = null;
+        Node current = head;
+        while( current != null ) {
+
+            //set temp node to current.next
+            Node temp = current.next;
+            //Point current.next to prev
+            current.next = prev;
+            //move prev and current by one
+            prev = current;
+            current = temp;
+        }
+        //set head node with prev
+        head = prev;
+        return prev;
+    }
     public static void main(String[] args) {
         
         Node head = null;
@@ -37,6 +59,10 @@ public class Lab7 {
         head = inserLast(head,676);
         head = inserLast(head,1);
         head = inserLast(head,4);
+        displayList(head);
+
+        head = reverse(head);
+        System.out.println("----After Reverse----------");
         displayList(head);
         head = deleteFirst(head);
         System.out.println("----After Delete----------");System.out.println("\n");
