@@ -29,7 +29,6 @@ public class MyStack {
             //throw new StackFullException("Full exception");
             int newCapacity = this.capacity + 10;
             Integer mynewArray[] = new Integer[newCapacity];
-            
         }
         top++;
         myarray[top] = element;

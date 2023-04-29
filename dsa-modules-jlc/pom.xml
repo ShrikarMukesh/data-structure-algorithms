@@ -25,6 +25,7 @@
         <module>m8-hashing</module>
         <module>m9-linkedlist</module>
         <module>m11-stack</module>
+        <module>m12-queues</module>
     </modules>
     <properties>
 		<java.version>17</java.version>
