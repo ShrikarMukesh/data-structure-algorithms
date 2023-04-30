@@ -1,49 +1,69 @@
-package com.dsa.implarray;
+package com.dsa.impllinkedlist;
 
+import lombok.ToString;
+
+@ToString
+class Node{
+    int data;
+    Node next;
+    public Node(int data){
+        this.data = data;
+        this.next =null;
+    }
+}
+
+@ToString
 public class MyQueue {
 
     int size; // size of array
     int capacity;
-    Integer myArray[];
 
+    Node frontNode;
+    Node rearNode;
     public MyQueue(int capacity){
         this.capacity = capacity;
         this.size=0;
-        this.myArray = new Integer[capacity];
-    }
+        this.frontNode = null;
+        this.rearNode = null;
 
+    }
     public int size(){
         return size;
     }
-
     public boolean isEmpty(){
-        return (size==0);
+        //return (size==0);
+        return (frontNode == null && rearNode ==null);
     }
-
     public boolean isFull(){
         return (size == capacity);
     }
 
-    public boolean offer(int element){
-
-        if (isFull()){
-            return false;
+    public void offer(int element){
+        Node temp = new Node(element);
+        //1.Empty List
+        if(isEmpty()){
+           frontNode = temp;
+           rearNode = temp;
+           size++;
         }
-        myArray[size]  = element;
+        //2.Non-Empty List
+        rearNode.next = temp;
+        rearNode = temp;
         size++;
-        return true;
     }
 
     public Integer poll(){
         if(isEmpty()){
             return null;
         }
-        int element = myArray[0];
-        for(int i=0; i < size -1; i++){
-            myArray[i] = myArray[i+1];
-        }
+        int element = frontNode.data;
+        Node temp = frontNode;
+        frontNode = frontNode.next;
+        temp.next =null;
         size--;
-        myArray[size] = null;
+        if(frontNode == null){
+            rearNode = null;
+        }
         return element;
     }
 
@@ -51,34 +71,7 @@ public class MyQueue {
         if(isEmpty()){
             return null;
         }
-        return myArray[0];
-    }
-
-    public int getFront(){
-        if(isEmpty()){
-            return -1;
-        }
-        return 0;
-    }
-
-    public int getRear(){
-        if(isEmpty()){
-            return -1;
-        }
-        return  size -1;
-    }
-
-    public String toString() {
-
-        String str = "[";
-        if (size != -1) {
-            for (Integer x : myArray) {
-                if (x != null)
-                    str = str + x + ",";
-            }
-        }
-        str = str + "]";
-        return str;
+        return frontNode.data;
     }
 
     public static void main(String[] args) {
