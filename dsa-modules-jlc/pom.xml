@@ -26,6 +26,7 @@
         <module>m9-linkedlist</module>
         <module>m11-stack</module>
         <module>m12-queues</module>
+        <module>m13-deque</module>
     </modules>
     <properties>
 		<java.version>17</java.version>
