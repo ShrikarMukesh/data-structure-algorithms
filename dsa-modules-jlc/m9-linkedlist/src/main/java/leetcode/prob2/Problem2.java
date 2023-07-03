@@ -7,13 +7,11 @@ class ListNode {
 	int val;
 	ListNode next;
 
-	ListNode() {
+	public ListNode() {
 	}
-
 	ListNode(int val) {
 		this.val = val;
 	}
-
 	ListNode(int val, ListNode next) {
 		this.val = val;
 		this.next = next;
@@ -30,6 +28,7 @@ class Solution {
 		int carry = 0;
 
 		while (list1 != null || list2 != null || carry !=0) {
+
 			int a = (list1 != null) ? list1.val : 0;
 			int b = (list2 != null) ? list2.val : 0;
 
