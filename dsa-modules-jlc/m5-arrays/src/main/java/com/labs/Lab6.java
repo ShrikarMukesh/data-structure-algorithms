@@ -1,4 +1,4 @@
-package com;
+package com.labs;
 
 //Delete the Element at given position in an Array
 public class Lab6 {

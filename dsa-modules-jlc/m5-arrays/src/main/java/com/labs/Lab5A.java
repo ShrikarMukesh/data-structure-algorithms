@@ -1,4 +1,4 @@
-package com;
+package com.labs;
 
 public class Lab5A {
     public static void main(String[] args) {

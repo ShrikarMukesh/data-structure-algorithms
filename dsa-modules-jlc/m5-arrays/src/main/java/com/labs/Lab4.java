@@ -1,4 +1,4 @@
-package com;
+package com.labs;
 
 //Search for given Element in the Unsorted Array
 public class Lab4 {
