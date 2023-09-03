@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 //BubbleSort
 
-public class Lab11 {
+public class BubbleSort {
 
 	public static void bubbleSort(int arr[]) {
 		

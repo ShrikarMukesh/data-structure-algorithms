@@ -29,6 +29,7 @@
         <module>m13-deque</module>
         <module>m14-Sorting</module>
         <module>interview-problems</module>
+        <module>m16-Trees</module>
     </modules>
     <properties>
 		<java.version>17</java.version>

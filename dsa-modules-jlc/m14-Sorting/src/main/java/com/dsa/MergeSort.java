@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 // Merge function required for merge sort
 
-public class Lab16 {
+public class MergeSort {
 
 	public static void merge(int arr[],int low,int mid,int high) {
 		

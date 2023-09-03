@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 //Selection Sort
 
-public class Lab13 {
+public class SelectionSort1 {
 
 	public static void selectionSort(int arr[]) {
 

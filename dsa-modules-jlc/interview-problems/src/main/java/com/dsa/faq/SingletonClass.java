@@ -15,6 +15,7 @@ Please note that serialization and deserialization can introduce security risks,
 public class SingletonClass implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public static String name;
     private static SingletonClass instance;
 
     private SingletonClass() {

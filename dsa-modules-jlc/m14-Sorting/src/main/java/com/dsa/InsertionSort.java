@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 //Insertion Sort
 
-public class Lab14 {
+public class InsertionSort {
 
 	public static void insertionSort(int arr[]) {
 

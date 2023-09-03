@@ -5,7 +5,7 @@ import java.util.Arrays;
 // Merge Two Sorted Arrays
 // Merged Output should be Sorted
 
-public class Lab15 {
+public class MergeTwoSortedArrays {
 
 	public static int[] mergeArrays(int a[],int b[]) {
 		int m = a.length;

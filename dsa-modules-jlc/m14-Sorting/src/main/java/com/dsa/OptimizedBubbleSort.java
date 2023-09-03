@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 //Optimized BubbleSort
 
-public class Lab12 {
+public class OptimizedBubbleSort {
 
 	public static void bubbleSort(int arr[]) {
 		
