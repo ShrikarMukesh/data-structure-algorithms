@@ -1,8 +1,8 @@
-package com.dsa.labs;
+package com.trees.labs;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
+
 //ArrayDeque - Single Threaded
 public class Lab2 {
     public static void main(String[] args) {

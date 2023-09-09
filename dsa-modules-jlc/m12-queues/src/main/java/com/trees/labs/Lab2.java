@@ -1,4 +1,4 @@
-package com.dsa.labs;
+package com.trees.labs;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
