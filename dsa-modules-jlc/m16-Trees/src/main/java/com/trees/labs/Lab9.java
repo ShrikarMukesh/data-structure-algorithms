@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // Level Order Traversal( Breadth First)
-
 public class Lab9 {
 
 	public static void levelOrder(Node myroot) {
@@ -27,7 +26,6 @@ public class Lab9 {
 			myque.add(currNode.right);	
 		
 		}
-		
 	}
 
 	public static void main(String[] args) {
