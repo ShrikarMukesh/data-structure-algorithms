@@ -1,6 +1,6 @@
 package com.numloops1;
 
-// 6. WAP to Print Divisibles of the given Number.
+// 6. WAP to Print Divisible of the given Number.
 class Lab6 {
     public static void main(String as[]) {
         int n = 10;

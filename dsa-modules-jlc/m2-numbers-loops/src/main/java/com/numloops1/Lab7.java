@@ -1,6 +1,6 @@
 package com.numloops1;
 
-// 7. WAP to Find the Number of Divisibles of the given Number.
+// 7. WAP to Find the Number of Divisible of the given Number.
 class Lab7 {
     public static void main(String as[]) {
         int n = 10;
