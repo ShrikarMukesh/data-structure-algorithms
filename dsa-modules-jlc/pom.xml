@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
     <name>dsa-modules-jlc</name>
 	<description>JLC Data Structure and Algorithms</description>
+
     <modules>
         <module>m1-introduction</module>
         <module>m2-numbers-loops</module>
@@ -30,11 +31,15 @@
         <module>m14-Sorting</module>
         <module>interview-problems</module>
         <module>m16-Trees</module>
+		<module>m18-Graphs</module>
     </modules>
+
     <properties>
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -47,12 +52,14 @@
             <version>1.18.26</version>
             <optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<version>3.1.0</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
