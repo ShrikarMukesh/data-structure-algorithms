@@ -1,4 +1,4 @@
-package com.trees.completablefuture;
+package com.graphs.completablefuture;
 
 import java.io.BufferedReader;
 import java.io.IOException;
